@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>صفحه تمرینی (TEST ONLY) — بدون جمع‌آوری داده</title>
+  <meta name="robots" content="noindex,nofollow">
+  <style>
+    :root { --bg:#0b1224; --panel:#0f172a; --border:#1f2a44; --txt:#e5e7eb; --muted:#9CA3AF; --accent:#22c55e; --warn:#f59e0b; --danger:#ef4444; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--txt);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans",Ubuntu,Cantarell,"Helvetica Neue",Arial}
+    .wrap{max-width:720px;margin:32px auto;padding:0 16px}
+    .banner{background:var(--danger);color:#fff;padding:12px 16px;border-radius:12px;font-weight:700;text-align:center}
+    .card{background:linear-gradient(180deg,#0f172a,#0d152e);border:1px solid var(--border);border-radius:16px;padding:20px;margin-top:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    h1{font-size:20px;margin:10px 0}
+    p{margin:8px 0}
+    .muted{color:var(--muted);font-size:14px}
+    label{display:block;margin:12px 0 6px 0;font-size:14px;color:#cbd5e1}
+    input,select,button{
+      width:100%;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:#0b1020;color:var(--txt);
+      outline:none;transition:border-color .2s, box-shadow .2s;font-size:14px
+    }
+    input:focus,select:focus{border-color:#60a5fa;box-shadow:0 0 0 3px rgba(96,165,250,.25)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .btn{cursor:pointer;border:1px solid var(--border)}
+    .btn-primary{background:#2563eb;border-color:#1d4ed8}
+    .btn-primary:hover{background:#1d4ed8}
+    .btn-ghost{background:transparent}
+    .note{border-left:4px solid var(--warn);padding:10px 12px;background:#171b2c;border-radius:8px;margin-top:12px;color:#f8e3b0}
+    .ok{color:#bbf7d0}
+    .x{color:#fecaca}
+    .footer{font-size:12px;color:var(--muted);margin-top:24px;text-align:center}
+    .pill{display:inline-block;background:#0f1a34;border:1px solid #29406e;color:#93c5fd;padding:2px 8px;border-radius:999px;font-size:12px;margin-left:6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="banner">این صفحه فقط برای <u>تمرین/آموزش</u> ساخته شده است — <b>اطلاعات کارت وارد کنید</b>.</div>
+    <div class="card">
+      <h1>فرم تمرینی پرداخت (بدون ارسال داده)</h1>
+      <p class="muted">این یک نمونهٔ آموزشی است تا بتوانید سیاست‌ها/محافظت‌های ضد فیشینگ را <b>بدون تقلید از برندها</b> و <b>بدون جمع‌آوری داده</b> بررسی کنید.</p>
+
+      <form id="demo" onsubmit="return handleSubmit(event)">
+        <label>مبلغ</label>
+        <input placeholder="۱۰۰,۰۰۰ ریال" inputmode="numeric" autocomplete="off">
+
+        <div class="row">
+          <div>
+            <label>شماره کارت</label>
+            <input placeholder="**** **** **** ****" inputmode="numeric" autocomplete="off">
+          </div>
+          <div>
+            <label>CVV2</label>
+            <input placeholder="***" inputmode="numeric" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>تاریخ انقضا (ماه/سال)</label>
+            <input placeholder="MM/YY" inputmode="numeric" autocomplete="off">
+          </div>
+          <div>
+            <label>رمز پویا</label>
+            <input placeholder="******" inputmode="numeric" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">پرداخت</button>
+          <button class="btn btn-ghost" type="button" onclick="resetForm()">پاک‌سازی</button>
+          <span class="pill">TEST ONLY</span>
+        </div>
+        <div id="msg" class="note" style="display:none"></div>
+      </form>
+
+      <div class="note">
+        <b>توجه:</b> هیچ داده‌ای به سرور ارسال نمی‌شود. این صفحه فقط رویداد «کلیک» را در جاوااسکریپت شبیه‌سازی می‌کند و برای آموزش/تمرین است.
+      </div>
+    </div>
+
+    <p class="footer">
+      ساخته‌شده برای تمرین ضد‌فیشینگ • بدون هرگونه لوگو/نام تجاری • <span class="x">لطفاً هرگز اطلاعات واقعی وارد نکنید</span> • <span class="ok">می‌توانید این فایل را روی GitHub Pages / Netlify بارگذاری کنید</span>
+    </p>
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const el = document.getElementById('msg');
+      el.style.display = 'block';
+      el.innerHTML = '✅ پرداخت نمایشی انجام شد (داده‌ای ارسال نشد).<br><small>این فقط یک سناریوی تمرینی است.</small>';
+      return false;
+    }
+    function resetForm(){
+      document.getElementById('demo').reset();
+      const el = document.getElementById('msg');
+      el.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
